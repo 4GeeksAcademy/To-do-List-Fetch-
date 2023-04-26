@@ -1,11 +1,20 @@
 import React, { useState } from "react";
+import "../../styles/index.css";
 
 export const Lista = () => {
     const [inputValue, setInputValue] = useState("");
     const [taskList, setTaskList] = useState([{
         description: "Tarea 1",
         status: true
-    }
+    },
+    {
+        description: "Tarea 2",
+        status: true
+    },
+    {
+        description: "Tarea 3",
+        status: true
+    },
     ]);
 
     const handleAddTask = (event) => {
@@ -17,7 +26,7 @@ export const Lista = () => {
                  description: inputValue,
                  status: false
             }])
-        setInputValue(" ")
+            setInputValue(" ")
         }
     }
 
@@ -34,26 +43,25 @@ export const Lista = () => {
 
                         <div className="card">
                             <div className="card-body p-5">
-
+                                <h1 className="text-center">To-Do List</h1>
                                 <div className="d-flex justify-content-center align-items-center mb-4">
                                     <div className="form-outline flex-fill">
-                                        <input type="text" className="form-control" onKeyUp={handleAddTask}/>
+                                        <input type="text" className="form-control" value={inputValue} onChange={(event) => setInputValue(event.target.value)} onKeyUp={handleAddTask}/>
                                     </div>
-                                    {/* <button type="submit" className="btn btn-info ms-2">Add</button> */}
                                 </div>
 
-                                {/* <!-- Tabs content --> */} 
                                 <div>
-                                    <div className="tab-pane fade show active" id="ex1-tabs-1" role="tabpanel"
+                                    <div className="tab-pane fade show active" role="tabpanel"
                                         aria-labelledby="ex1-tab-1">
-                                        <ul className="list-group mb-0 col-12">
+                                        <ul className="list-group col-12"> {
+                                            taskList.length == 0 && <h1>No hay tareas, añadir tareas.</h1>
+                                        }
                                             {
-                                                taskList.map ((element, index) => {
+                                                taskList.length != 0 && taskList.map ((element, index) => {
                                                     return (
-                                                        <li key={index} className="col-12 list-group-item d-flex justify-content-between align-items-center border-0 mb-2 rounded">
-                                                            {" "}
-                                                            {element.description} {" "}
-                                                            <button type="submit" onClick={() => eliminarTarea (index)} className="btn btn-info">X</button>
+                                                         <li key={index} className="col-12 mb-2 d-flex justify-content-between align-items-center list-group-item border-2 rounded">
+                                                            <p className="overflow-hidden px-2">{" "} {element.description} {" "}</p>
+                                                            <button type="submit" onClick={() => eliminarTarea (index)} className="button1 btn btn-info">X</button>
                                                         </li>
                                                     )
                                                 })

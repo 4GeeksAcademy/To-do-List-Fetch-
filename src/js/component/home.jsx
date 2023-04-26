@@ -8,7 +8,9 @@ import rigoImage from "../../img/rigo-baby.jpg";
 const Home = () => {
 	return (
 		<>
+		<div className="bg-info">
 			<Lista/>
+		</div>
 		</>
 	);
 };
